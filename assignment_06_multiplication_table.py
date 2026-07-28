@@ -54,4 +54,53 @@
 # =============================================================================
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
+python
+# PROGRAMMING FUNDAMENTALS — Assignment 6
+# Topic: Loops and Functions
+# =============================================================================
 
+def print_table(number):
+    """Print the multiplication table for a single number, 1 to 12."""
+    print(f"Multiplication Table for {number}:")
+    for i in range(1, 13):
+        print(f"{number}  x  {i:<2} =  {number * i}")
+
+
+def single_table():
+    """Part A: ask for a number and print its multiplication table."""
+    number = int(input("Enter a number: "))
+    print()
+    print_table(number)
+
+
+def tables_up_to_n():
+    """Part B: ask for N and print tables for every number from 1 to N."""
+    n = int(input("Enter a number N: "))
+
+    if n <= 0:
+        print("Error: N must be a positive integer.")
+        return
+
+    print()
+    for number in range(1, n + 1):
+        print_table(number)
+        if number != n:
+            print("---------------------------")
+
+
+def main():
+    print("Multiplication Table Generator")
+    print("1. Single table")
+    print("2. Tables from 1 to N")
+    choice = input("Choose an option (1-2): ").strip()
+
+    if choice == "1":
+        single_table()
+    elif choice == "2":
+        tables_up_to_n()
+    else:
+        print("Error: Invalid choice.")
+
+
+if __name__ == "__main__":
+    main()
