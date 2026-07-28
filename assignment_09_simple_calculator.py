@@ -67,4 +67,97 @@
 # =============================================================================
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
+def add(a, b):
+    return a + b
 
+
+def subtract(a, b):
+    return a - b
+
+
+def multiply(a, b):
+    return a * b
+
+
+def divide(a, b):
+    """Return a / b rounded to 2 decimal places, or None if b is zero."""
+    if b == 0:
+        return None
+    return round(a / b, 2)
+
+
+def modulus(a, b):
+    """Return a % b, or None if b is zero."""
+    if b == 0:
+        return None
+    return a % b
+
+
+def exponentiate(a, b):
+    return a ** b
+
+
+def display_menu():
+    """Print the main menu."""
+    print("============================")
+    print("     SIMPLE CALCULATOR")
+    print("============================")
+    print("1. Addition")
+    print("2. Subtraction")
+    print("3. Multiplication")
+    print("4. Division")
+    print("5. Modulus")
+    print("6. Exponentiation")
+    print("7. Quit")
+
+
+def get_two_numbers():
+    """Prompt for and return two numbers as floats."""
+    first = float(input("Enter first number : "))
+    second = float(input("Enter second number: "))
+    return first, second
+
+
+def format_number(n):
+    """Print whole numbers without a trailing .0, keep decimals otherwise."""
+    return str(int(n)) if n == int(n) else str(n)
+
+
+def main():
+    symbols = {
+        "1": ("+", add),
+        "2": ("-", subtract),
+        "3": ("*", multiply),
+        "4": ("/", divide),
+        "5": ("%", modulus),
+        "6": ("**", exponentiate),
+    }
+
+    while True:
+        print()
+        display_menu()
+        choice = input("Select an operation (1-7): ").strip()
+        print()
+
+        if choice == "7":
+            print("Goodbye!")
+            break
+
+        if choice not in symbols:
+            print("Error: Invalid choice. Please enter a number from 1 to 7.")
+            continue
+
+        symbol, operation = symbols[choice]
+        a, b = get_two_numbers()
+
+        if choice in ("4", "5") and b == 0:
+            print("Error: Cannot divide by zero.")
+            continue
+
+        result = operation(a, b)
+        result_str = result if choice == "4" else format_number(result)
+        print(f"Result: {format_number(a)} {symbol} {format_number(b)} = {result_str}")
+
+
+if __name__ == "__main__":
+    main()
